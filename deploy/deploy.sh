@@ -34,6 +34,8 @@ kubectl apply ${LABEL_SELECTOR_ARG} -f https://raw.githubusercontent.com/kubevir
 kubectl apply ${LABEL_SELECTOR_ARG} -f https://raw.githubusercontent.com/kubevirt/hyperconverged-cluster-operator/main/deploy/crds/hostpath-provisioner00.crd.yaml
 kubectl apply ${LABEL_SELECTOR_ARG} -f https://raw.githubusercontent.com/kubevirt/hyperconverged-cluster-operator/main/deploy/crds/scheduling-scale-performance00.crd.yaml
 kubectl apply ${LABEL_SELECTOR_ARG} -f https://raw.githubusercontent.com/kubevirt/hyperconverged-cluster-operator/main/deploy/crds/tekton-tasks-operator00.crd.yaml
+kubectl apply ${LABEL_SELECTOR_ARG} -f https://raw.githubusercontent.com/bennyz/hyperconverged-cluster-operator/main/deploy/crds/forklift-volume-populator00.crd.yaml
+
 
 # Deploy cert-manager for webhook certificates
 kubectl apply ${LABEL_SELECTOR_ARG} -f https://raw.githubusercontent.com/kubevirt/hyperconverged-cluster-operator/main/deploy/cert-manager.yaml

@@ -887,3 +887,37 @@ spec:
     name: hostpath-provisioner-operator
     operator.hostpath-provisioner.kubevirt.io: ""
   type: ClusterIP
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: forklift-volume-populator-controller
+  namespace: kubevirt
+spec:
+  selector:
+    matchLabels:
+      app: forklift
+  template:
+    metadata:
+      labels:
+        app: forklift
+    spec:
+      serviceAccountName: forklift-controller
+      containers:
+        - name: forklift-populator-controller
+          image: 'quay.io/bzlotnik/populator-controller:latest'
+          ports:
+            - name: http-endpoint
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            - name: OVIRT_POPULATOR_IMAGE
+              value: 'quay.io/bzlotnik/ovirt-populator:latest'
+            - name: OPENSTACK_POPULATOR_IMAGE
+              value: 'quay.io/bzlotnik/openstack-populator:latest'
+
